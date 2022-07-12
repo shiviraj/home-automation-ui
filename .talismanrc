@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: yarn.lock
+  checksum: 96951d6fa5a67c70e59642b16fbef52d13c68b39db65ed8cc6c458bf4adf3f82
+- filename: src/components/MenuBar/MenuBar.js
+  checksum: eeb02a7c55cbeccbcccec57ce3f348551b7e0563ed94ff5ce724f20e5267a0eb
+version: ""

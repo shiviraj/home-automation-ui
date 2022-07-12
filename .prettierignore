@@ -1,0 +1,9 @@
+package-lock.json
+node_modules/
+.next/
+service-worker.js
+coverage
+npm-audit.html
+helm
+.vscode
+public/JsEncrypt.js
