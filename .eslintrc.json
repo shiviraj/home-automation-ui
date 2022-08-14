@@ -1,3 +1,32 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "react/prop-types": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/forbid-prop-types": 1,
+    "object-curly-newline": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/button-has-type": 1,
+    "import/no-named-as-default": "off",
+    "no-underscore-dangle": "off"
+  }
 }
