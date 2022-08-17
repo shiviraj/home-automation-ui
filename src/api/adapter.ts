@@ -1,10 +1,15 @@
 import axios from 'axios';
+import {getStorage} from "../utils/storage";
+import {AUTH} from "../config/constant";
 
 export const initHeaders = () => {
-  const {auth} = {auth: "bearer auth"};
+  const {token} = getStorage(AUTH) as { token: string }
   return {
     'Content-Type': 'application/json',
-    authorization: auth,
+    authorization: token,
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache',
+    'Expires': '0',
   };
 };
 

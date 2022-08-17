@@ -1,15 +1,15 @@
 import {Stack, Switch, Typography} from '@mui/material';
+import API from '../../api/API';
 import {useDevices} from '../../contexts/Devices';
 import {DeviceInterface, State} from "../../contexts/utils";
-import {useWebSocket, WSEvent} from "../../contexts/WebSocket";
 
 const Device = ({content}: { content: DeviceInterface }) => {
-  const {option} = useDevices();
-  const {send} = useWebSocket()
+  const {option, updateDevice} = useDevices();
 
   const handleChange = (event: { target: { checked: boolean } }) => {
     const state = event.target.checked ? State.ON : State.OFF
-    send({event: WSEvent.UPDATE_STATE, data: {state, device: content}})
+    API.devices.updateState(content, state)
+      .then(device => updateDevice(device))
   };
 
   return (

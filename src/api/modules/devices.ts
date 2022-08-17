@@ -8,8 +8,8 @@ const devices = (BFF_URL: string) => ({
   },
 
   updateState(device: DeviceInterface, state: State): Promise<DeviceInterface> {
-    const options = {method: 'PUT', data: {device, state}};
-    return axios.fetch(BFF_URL, options) as Promise<DeviceInterface>;
+    const options = {method: 'PUT'};
+    return axios.fetch(BFF_URL, options, {device, state}) as Promise<DeviceInterface>;
   }
 
 });
