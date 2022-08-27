@@ -19,7 +19,7 @@ const Device = ({content}: { content: DeviceInterface }) => {
         {content.name}
         {content.number !== 0 ? ` ${content.number}` : ''}
       </Typography>
-      {content.type === 'OUTPUT' ? (
+      {content.mode === 'OUTPUT' ? (
         <Switch
           checked={content.value === 1}
           onChange={handleChange}

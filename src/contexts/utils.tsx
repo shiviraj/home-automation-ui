@@ -3,6 +3,7 @@ export interface DeviceInterface {
   location: string,
   name: string,
   number: number,
+  mode: string,
   type: string,
   value: number
 }
