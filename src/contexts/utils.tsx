@@ -27,7 +27,7 @@ const deepSortDevices = (devices: Record<string, Array<DeviceInterface>>) => {
   const keys = Object.keys(devices).sort()
   return keys.reduce((sortedDevices, key) => {
     sortedDevices[key] = devices[key].sort((d1, d2) => {
-      if (d1.type < d2.type || d1.name > d2.name || (d1.name === d2.name && d1.number > d2.number)) {
+      if (d1.mode < d2.mode || d1.name > d2.name || (d1.name === d2.name && d1.number > d2.number)) {
         return 1
       }
       return -1

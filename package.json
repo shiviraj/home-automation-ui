@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker:push": "docker buildx build --platform=linux/amd64,linux/arm64 -t shiviraj/home-automation-ui:latest --push ."
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",

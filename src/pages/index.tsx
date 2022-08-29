@@ -8,7 +8,7 @@ import {NextPage} from "next";
 const viewOptions: Array<{ label: string, value: string }> = [
   {label: 'Rooms', value: 'location'},
   {label: 'Devices', value: 'name'},
-  {label: 'Boards', value: 'nodeMcu'},
+  {label: 'Boards', value: 'node'},
 ];
 
 const DevicesWithOption = () => {
