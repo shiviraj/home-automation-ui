@@ -18,9 +18,8 @@ export const DevicesProvider = ({children, viewOption}: PropsWithChildren<{ view
 
   useEffect(() => {
     API.devices.getAll()
-      .then((devices: Array<DeviceInterface>) => {
-        setAllDevices(devices);
-      });
+      .then((devices: Array<DeviceInterface>) => setAllDevices(devices))
+      .catch(() => setAllDevices([]))
   }, []);
 
   useEffect(() => {

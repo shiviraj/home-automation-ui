@@ -1,13 +1,12 @@
 import React, {createContext, PropsWithChildren, useContext, useEffect, useState} from 'react';
 import {AUTH, USER} from '../config/constant';
 import API from "../api/API";
-import {getStorage} from "../utils/storage";
 import {useRouter} from "next/router";
 import {Box, CircularProgress} from "@mui/material";
 
-export type User = {}
+export type User = { _id?: string, username: string, name: string, email: string, role: "ADMIN" | "USER" }
 
-type UserContextInterface = { user: User, logout: () => Promise<void> }
+type UserContextInterface = { user: User, updateUser: (user: User) => void, logout: () => Promise<void> }
 
 const UserContext = createContext(null as UserContextInterface | null);
 
@@ -18,12 +17,6 @@ export const UserProvider = ({children}: PropsWithChildren) => {
 
   useEffect(() => {
     setLoading(true)
-    const token = getStorage(AUTH)
-    if (!token.hasOwnProperty("token") && !router.pathname.startsWith("/login")) {
-      router.push("/login").then()
-      return
-    }
-
     API.users.validate()
       .then((user) => {
         setUser(user);
@@ -33,11 +26,19 @@ export const UserProvider = ({children}: PropsWithChildren) => {
       .catch(() => router.push("/login"))
       .finally(() => setLoading(false))
 
-  }, []);
+  }, [router.pathname]);
+
+  useEffect(() => {
+    if (user === null) {
+      router.push("/login").then()
+    }
+  }, [user])
 
   const logout = async () => {
     sessionStorage.removeItem(USER);
-    setUser(null);
+    sessionStorage.removeItem(AUTH);
+    await router.push("/login")
+    setUser(null)
   };
 
   if (loading) {
@@ -47,8 +48,8 @@ export const UserProvider = ({children}: PropsWithChildren) => {
   }
 
   return (
-    <UserContext.Provider value={{user: user!, logout}}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{user: user!, updateUser: setUser, logout}}>{children}</UserContext.Provider>
   );
 };
 
-export const useUser = () => useContext(UserContext);
+export const useUser = () => useContext(UserContext)!;

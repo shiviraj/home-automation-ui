@@ -13,7 +13,7 @@ export const initHeaders = () => {
   };
 };
 
-type Document = Record<string, any>
+export type Document = Record<string, any>
 
 const adapter = {
   fetch: function (url: string, options?: Document, data?: Document | Array<Document>) {

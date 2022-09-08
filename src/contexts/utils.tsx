@@ -3,8 +3,8 @@ export interface DeviceInterface {
   location: string,
   name: string,
   number: number,
-  mode: string,
-  type: string,
+  mode: "OUTPUT" | "INPUT",
+  type: "DIGITAL" | "ANALOG",
   value: number
 }
 

@@ -3,10 +3,12 @@ import {AppBar, Box, IconButton, Toolbar, Typography} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuBar from '../MenuBar/MenuBar';
 import useMedia from '../../hooks/useMedia';
+import {useUser} from "../../contexts/User";
 
 const Header = ({title}: { title: string }) => {
   const media = useMedia();
   const [open, setOpen] = useState(false);
+  const {user} = useUser()
 
   const handleOpen = () => setOpen(!open);
 
@@ -28,7 +30,7 @@ const Header = ({title}: { title: string }) => {
             </IconButton>
           )}
           <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-            {title}
+            {title} {user && "|"} {user?.name}
           </Typography>
           <MenuBar open={open} onClose={handleOpen}/>
         </Toolbar>

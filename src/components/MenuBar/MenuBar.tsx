@@ -1,17 +1,29 @@
 import {Drawer, MenuItem, Stack} from '@mui/material';
 import useMedia from '../../hooks/useMedia';
-import menuList from './Menu.List';
 import Link from 'next/link';
+import {useUser} from "../../contexts/User";
+import {useRouter} from "next/router";
+import getMenuList from "./Menu.List";
 
-const MenuItems = () => (
-  <>
-    {menuList.map((item, index) => (
-      <Link href={item.link} key={index}>
+const MenuItems = () => {
+  const router = useRouter()
+  const {user, logout} = useUser()
+
+  if (user) {
+    return <>
+      {getMenuList(user.role).map((item, index) => <Link href={item.link} key={index}>
         <MenuItem key={index}>{item.label}</MenuItem>
-      </Link>
-    ))}
-  </>
-);
+      </Link>)}
+      <div onClick={logout}>
+        <MenuItem>Logout</MenuItem>
+      </div>
+    </>;
+  }
+
+  if (router.pathname === "/login") return <></>
+
+  return <Link href={"/login"}><MenuItem>Login</MenuItem></Link>
+};
 
 const MenuBar = ({open, onClose}: { readonly open: boolean, onClose: () => void }) => {
   const media = useMedia();

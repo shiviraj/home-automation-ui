@@ -50,7 +50,7 @@ const LoginPage: NextPage = () => {
           {error && <Typography variant={"h6"} color={"error"}>Something went wrong, Please try again!!</Typography>}
           <TextField label="Username" required value={values.username} onChange={onChange("username")}
                      variant="outlined"/>
-          <TextField label="Password" required value={values.password} onChange={onChange("password")}
+          <TextField label="Password" type={"password"} required value={values.password} onChange={onChange("password")}
                      variant="outlined"/>
           <LoadingButton
             type={"submit"}
