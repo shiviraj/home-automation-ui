@@ -20,7 +20,7 @@ const Device = ({content}: { content: DeviceInterface }) => {
         {content.number !== 0 ? ` ${content.number}` : ''}
       </Typography>
       <Switch
-        checked={Boolean(content.logic === "INDIRECT" ? !content.value : content.value)}
+        checked={Boolean(content.value)}
         onChange={handleChange}
         disabled={content.mode === "INPUT"}
       />
