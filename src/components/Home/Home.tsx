@@ -24,7 +24,7 @@ const CardContainer = styled(Card)(({theme, rows}: { theme: Theme, rows: number 
 });
 
 const Home = () => {
-  const {devices, option, updateDevice} = useDevices();
+  const {devices, updateDevice} = useDevices();
   const ws = useWebSocket()
   const keys = Object.keys(devices).sort().filter((key) => key);
 
@@ -38,9 +38,7 @@ const Home = () => {
     <Container>
       {keys.map((keyName, index) => (
         <CardContainer key={index} rows={devices[keyName].length}>
-          <Typography variant={'h5'} mt={1} ml={2}>
-            {keyName} {option === "node" ? `(${devices[keyName][0].location})` : ""}
-          </Typography>
+          <Typography variant={'h5'} mt={1} ml={2}>{keyName}</Typography>
           <Box ml={2}>
             {devices[keyName].map((content, index) => (
               <Device key={index} content={content}/>

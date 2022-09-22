@@ -5,6 +5,7 @@ export interface DeviceInterface {
   number: number,
   mode: "OUTPUT" | "INPUT",
   type: "DIGITAL" | "ANALOG",
+  logic: "DIRECT" | "INDIRECT",
   value: number
 }
 

@@ -15,12 +15,12 @@ const Device = ({content}: { content: DeviceInterface }) => {
   return (
     <Stack direction={'row'} alignItems={'center'} justifyContent={'space-between'} height={40}>
       <Typography variant={'body1'}>
-        {option === 'name' ? `${content.location} ` : ''}
+        {option !== 'location' ? `${content.location} ` : ''}
         {content.name}
         {content.number !== 0 ? ` ${content.number}` : ''}
       </Typography>
       <Switch
-        checked={content.value === 1}
+        checked={Boolean(content.logic === "INDIRECT" ? !content.value : content.value)}
         onChange={handleChange}
         disabled={content.mode === "INPUT"}
       />
