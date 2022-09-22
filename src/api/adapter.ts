@@ -6,7 +6,7 @@ export const initHeaders = () => {
   const {token} = getStorage(AUTH) as { token: string }
   return {
     'Content-Type': 'application/json',
-    authorization: token,
+    authorization: token || "token",
     'Cache-Control': 'no-cache',
     'Pragma': 'no-cache',
     'Expires': '0',

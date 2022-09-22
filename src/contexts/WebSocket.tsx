@@ -1,5 +1,5 @@
 import {createContext, PropsWithChildren, useContext, useEffect, useState} from 'react';
-import {AUTH, BFF_URL} from "../config/constant";
+import {AUTH} from "../config/constant";
 import {formatMessage} from "./utils";
 
 export enum WSEvent {
@@ -19,7 +19,7 @@ const WebSocketContext = createContext(null as WebSocketContextInterface | null)
 const retryCount = 3
 const retryInterval = 3000
 
-const url = `${BFF_URL.replace('http', 'ws')}/websockets`
+const url = typeof window !== "undefined" ? `${window.location.href.replace('http', 'ws')}websockets` : ""
 const token = typeof window !== "undefined" ? sessionStorage.getItem(AUTH) : "token"
 
 export const WebSocketProvider = ({children}: PropsWithChildren) => {

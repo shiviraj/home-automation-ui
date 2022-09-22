@@ -51,7 +51,7 @@ const AddUserPage: NextPage = () => {
       <form onSubmit={handleSubmit(submitForm)}>
         <Stack spacing={2}>
           {error && <Typography variant={"h6"} color={"error"}>Something went wrong, Please try again!!</Typography>}
-          <Username username={values.username} onChange={onChange("username")}
+          <Username username={values.username} onChange={onChange("username")} excludeCurrent={false}
                     onError={handleInputErrors("usernameError")}/>
           <TextField label="Name" required value={values.name} onChange={onChange("name")}
                      variant="outlined"/>

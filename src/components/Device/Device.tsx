@@ -19,18 +19,11 @@ const Device = ({content}: { content: DeviceInterface }) => {
         {content.name}
         {content.number !== 0 ? ` ${content.number}` : ''}
       </Typography>
-      {content.type === 'DIGITAL' ? (
-        <Switch
-          checked={content.value === 1}
-          onChange={handleChange}
-          inputProps={{'aria-label': 'controlled'}}
-          disabled={content.mode === "INPUT"}
-        />
-      ) : (
-        <Typography variant={'body1'} mr={3}>
-          {content.value}
-        </Typography>
-      )}
+      <Switch
+        checked={content.value === 1}
+        onChange={handleChange}
+        disabled={content.mode === "INPUT"}
+      />
     </Stack>
   );
 };

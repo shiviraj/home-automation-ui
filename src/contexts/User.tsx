@@ -29,7 +29,7 @@ export const UserProvider = ({children}: PropsWithChildren) => {
   }, [router.pathname]);
 
   useEffect(() => {
-    if (user === null) {
+    if (user === null && router.pathname !== "/login") {
       router.push("/login").then()
     }
   }, [user])

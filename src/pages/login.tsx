@@ -30,7 +30,7 @@ const LoginPage: NextPage = () => {
 
   const submitForm = () => {
     setLoading(true)
-    API.users.login(values as Document)
+    API.users.login(values)
       .then((data: { token: string }) => {
         setStorage(AUTH, data)
         setError(false)
