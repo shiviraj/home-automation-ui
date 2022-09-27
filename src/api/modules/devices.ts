@@ -4,12 +4,12 @@ import {DeviceInterface, State} from "../../contexts/utils";
 const devices = (BFF_URL: string) => ({
 
   getAll(): Promise<Array<DeviceInterface>> {
-    return axios.fetch(BFF_URL) as Promise<Array<DeviceInterface>>;
+    return axios.fetch<Array<DeviceInterface>>(BFF_URL)
   },
 
   updateState(device: DeviceInterface, state: State): Promise<DeviceInterface> {
     const options = {method: 'PUT'};
-    return axios.fetch(BFF_URL, options, {device, state}) as Promise<DeviceInterface>;
+    return axios.fetch<DeviceInterface>(BFF_URL, options, {device, state})
   }
 
 });

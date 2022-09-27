@@ -15,12 +15,17 @@ export const DevicesProvider = ({children, viewOption}: PropsWithChildren<{ view
   const [option, setOption] = useState(viewOption.value);
   const [allDevices, setAllDevices] = useState([] as Array<DeviceInterface>);
   const [devices, setDevices] = useState({} as Record<string, Array<DeviceInterface>>);
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     API.devices.getAll()
       .then((devices: Array<DeviceInterface>) => setAllDevices(devices))
       .catch(() => setAllDevices([]))
-  }, []);
+  }, [count]);
+
+  useEffect(() => {
+    setTimeout(setCount, 300000, count + 1)
+  }, [count])
 
   useEffect(() => {
     setDevices(sortDevices(allDevices, option));
